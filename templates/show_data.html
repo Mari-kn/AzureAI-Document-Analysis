@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database Contents</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .table-section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .error {
+            color: red;
+            padding: 10px;
+            background-color: #fee;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .nav-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .nav-button:hover {
+            background-color: #45a049;
+        }
+        .value-cell {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Database Contents</h1>
+        
+        <a href="/" class="nav-button">Back to Upload</a>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if data %}
+            <!-- Main Categories Table -->
+            <div class="table-section">
+                <h2>Main Categories</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Main Category ID</th>
+                            <th>Main Category Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in data.main_categories %}
+                        <tr>
+                            <td>{{ category.maincat_id }}</td>
+                            <td>{{ category.main_category_name}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- KPI Categories Table -->
+            <div class="table-section">
+                <h2>KPI Categories</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                            <th>Description</th>
+                            <th>Main Category ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in data.kpi_categories %}
+                        <tr>
+                            <td>{{ category.cat_id }}</td>
+                            <td>{{ category.cat_name }}</td>
+                            <td>{{ category.cat_description }}</td>
+                            <td>{{ category.maincat_id }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- KPIs Table -->
+            <div class="table-section">
+                <h2>KPIs</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KPI ID</th>
+                            <th>Category ID</th>
+                            <th>KPI Name</th>
+                            <th>Unit</th>
+                            <th>Source</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for kpi in data.kpis %}
+                        <tr>
+                            <td>{{ kpi.kpi_id }}</td>
+                            <td>{{ kpi.category_id }}</td>
+                            <td>{{ kpi.kpi_name }}</td>
+                            <td>{{ kpi.unit }}</td>
+                            <td>{{ kpi.kpi_source }}</td>
+                            <td>{{ kpi.kpi_description }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Standard Values Table -->
+            <div class="table-section">
+                <h2>Standard Values</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KPI ID</th>
+                            <th>Location</th>
+                            <th>Country</th>
+                            <th>Industry</th>
+                            <th>Demographics</th>
+                            <th>Values</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for value in data.standard_values %}
+                        <tr>
+                            <td>{{ value.kpi_id }}</td>
+                            <td>{{ value.geographical_loc }}</td>
+                            <td>{{ value.country }}</td>
+                            <td>{{ value.industry }}</td>
+                            <td class="value-cell">
+                                Gender: {{ value.gender }}
+                                Age Group: {{ value.age_group }}
+                                Experience: {{ value.experience_level }}
+                            </td>
+                            <td class="value-cell">
+                                Average: {{ value.value_avg }}
+                                Min: {{ value.value_min }}
+                                Max: {{ value.value_max }}
+                            </td>
+                            <td>{{ value.source_val }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No data available in the database.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

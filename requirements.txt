@@ -1,0 +1,14 @@
+
+#SQL
+
+python-dotenv 
+sqlalchemy 
+pyodbc
+
+#Doc int
+azure-ai-documentintelligence
+
+kor
+
+langchain-community
+
