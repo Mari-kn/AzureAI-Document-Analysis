@@ -8,14 +8,22 @@ This project is a high level project that needs to have deep knowledge about Pyt
 
 # How to use this project
 
-<span>1- Download or clone the repo. </span>
-<span>2- Make a sql server DB in Azure.
-<span>3- Run the query in Create Azure Sql DB.sql in your Azure SQL DB. It will create desire tables and feed one of the tables.</span>
-<span>4- Run the app step by step: </span>
-   <span>a) python3 -m venv myenv</span>
-   <span>b) myenv\Scripts\activate </span>
-   <span>c) pip install -r requirements.txt</span>
-   <span>d) Python app.py</span>
+1- Download or clone the repo.
+
+2- Make a sql server DB in Azure.
+
+3- Run the query in Create Azure Sql DB.sql in your Azure SQL DB. It will create desire tables and feed one of the tables.
+
+4- Run the app step by step: 
+
+   a) python3 -m venv myenv
+   
+   b) myenv\Scripts\activate 
+   
+   c) pip install -r requirements.txt
+   
+   d) Python app.py
+   
 
 
 
